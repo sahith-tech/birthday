@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>A Little Birthday Surprise 🎁</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css?v=3.1">
+</head>
+<body>
+
+  <!-- Ambient Floating Background Particles -->
+  <div class="ambient-background" aria-hidden="true">
+    <div class="bokeh-orb orb-1"></div>
+    <div class="bokeh-orb orb-2"></div>
+    <div class="bokeh-orb orb-3"></div>
+    <div class="floating-stickers">
+      <span class="sticker s1">✨</span>
+      <span class="sticker s2">💖</span>
+      <span class="sticker s3">🤍</span>
+      <span class="sticker s4">⭐</span>
+      <span class="sticker s5">💕</span>
+      <span class="sticker s6">✨</span>
+      <span class="sticker s7">🌸</span>
+      <span class="sticker s8">✦</span>
+      <span class="sticker s9">💖</span>
+      <span class="sticker s10">✧</span>
+      <span class="sticker s11">🫶🏻</span>
+      <span class="sticker s12">⭐</span>
+      <span class="sticker s13">💫</span>
+      <span class="sticker s14">🎀</span>
+      <span class="sticker s15">✨</span>
+      <span class="sticker s16">💕</span>
+      <span class="sticker s17">🌟</span>
+      <span class="sticker s18">💖</span>
+      <span class="sticker s19">✦</span>
+      <span class="sticker s20">🌸</span>
+      <span class="sticker s21">✨</span>
+      <span class="sticker s22">🤍</span>
+    </div>
+  </div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Top Controls (Audio & Progress Indicator) -->
+  <header class="top-nav" id="top-nav">
+    <div class="progress-container" id="progress-container">
+      <span class="step-dot active" data-step="1" title="Surprise Gate"></span>
+      <span class="step-dot" data-step="2" title="Lucky Charm"></span>
+      <span class="step-dot" data-step="3" title="Her Strength"></span>
+      <span class="step-dot" data-step="4" title="Lucky Charm Message"></span>
+      <span class="step-dot" data-step="5" title="Friendship Promise"></span>
+      <span class="step-dot" data-step="6" title="Grand Finale"></span>
+    </div>
+    
+    <div class="header-right-controls">
+      <!-- Music Pill Player -->
+      <div class="music-pill" id="music-pill" title="Play / Pause Song: Adhento Gaani Vunnapaatuga (JERSEY) 🎵">
+        <span class="music-vinyl" id="music-vinyl">💿</span>
+        <div class="music-text-group">
+          <span class="music-track-name">Adhento Gaani</span>
+          <span class="music-status-text" id="music-status-text">Click to Play 🎵</span>
+        </div>
+        <button type="button" id="music-pill-btn" class="music-pill-btn" aria-label="Play song">
+          <span id="music-pill-icon">▶</span>
+        </button>
+      </div>
+
+      <button id="sound-toggle-btn" class="icon-btn" aria-label="Toggle Sound Effects" title="Sound Effects">
+        <span class="sound-icon">🔔</span>
+        <span class="sound-label">Sound On</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Presentation Deck -->
+  <main class="deck-container">
+
+    <!-- ==============================================
+         SLIDE 1: PASSWORD PROTECTED OPENING PAGE
+         ============================================== -->
+    <section class="slide slide-1 active" id="slide-1" data-slide="1">
+      <div class="slide-content password-card-wrap">
+        
+        <div class="scrapbook-card lock-card">
+          <!-- Decorative washi tape -->
+          <div class="washi-tape tape-center-top"></div>
+          
+          <div class="card-badge">✨ Special Delivery ✨</div>
+          
+          <h1 class="main-heading">A Little Surprise 🎁</h1>
+          
+          <div class="lock-graphic">
+            <div class="gift-box-icon" id="gift-box">
+              <span class="box-emoji">🎁</span>
+              <span class="sparkle-spark">✦</span>
+            </div>
+          </div>
+          
+          <div class="clue-box">
+            <p class="clue-intro">To unveil this surprise...</p>
+            <p class="clue-text">You should know your dairy DOB, Icepula 🙂↔️🙂↔️</p>
+          </div>
+
+          <form id="password-form" class="password-form" onsubmit="return false;">
+            <div class="input-group">
+              <span class="input-icon">🔐</span>
+              <input 
+                type="password" 
+                id="password-input" 
+                placeholder="Enter password..." 
+                autocomplete="off"
+                maxlength="12"
+              />
+              <button type="button" id="toggle-pw-visibility" class="pw-eye-btn" aria-label="Show password">👁️</button>
+            </div>
+            
+            <div id="error-message" class="error-msg" aria-live="polite"></div>
+
+            <button type="submit" id="unlock-btn" class="btn btn-primary pulse-btn">
+              <span>Unlock Surprise</span>
+              <span class="btn-icon">🔓</span>
+            </button>
+          </form>
+
+          <p class="hint-footnote">💡 Hint: 8 digits date format (DDMMYYYY)</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SLIDE 2: FIRST PHOTO — LUCKY CHARM INTRODUCTION
+         ============================================== -->
+    <section class="slide slide-2" id="slide-2" data-slide="2">
+      <div class="slide-content memory-slide-wrap">
+        
+        <div class="memory-card-grid">
+          <!-- Photo Column -->
+          <div class="photo-column">
+            <div class="polaroid-frame frame-tilt-left">
+              <div class="washi-tape tape-corner-left"></div>
+              <div class="photo-wrapper">
+                <img src="assets/images/photo1.jpg" alt="Childhood photo of her smiling" class="memory-photo" />
+              </div>
+              <div class="polaroid-caption">
+                <span class="caption-handwritten">Day One Smile 🌸</span>
+                <span class="caption-date">Chapter 01</span>
+              </div>
+              <div class="cute-pin">📌</div>
+            </div>
+          </div>
+
+          <!-- Message Column -->
+          <div class="letter-column">
+            <div class="scrapbook-letter">
+              <div class="letter-header">
+                <span class="stamp-pill">🌸 The Beginning</span>
+                <span class="memory-number">01 / 05</span>
+              </div>
+
+              <div class="letter-body">
+                <p class="quote-text primary-quote">
+                  Ee luckycharm ki appudu telidhu... 🥹
+                </p>
+                <p class="quote-text">
+                  Oka roju thana life lo thanu kuda teliyakunda, naaku chala special aina person ga maaruthundhani.
+                </p>
+                <p class="quote-text highlight-text">
+                  Honestly, mana paths cross avvadam naa adrushtam.
+                </p>
+              </div>
+
+              <div class="letter-footer">
+                <span class="friendship-tag">Forever Grateful 🤍</span>
+              </div>
+            </div>
+
+            <!-- Slide Navigation Buttons -->
+            <div class="slide-nav-buttons">
+              <button class="nav-btn prev-btn" data-target="1" title="Back to lock screen">
+                <span class="arrow">←</span> <span>Lock Screen</span>
+              </button>
+              <button class="nav-btn next-btn" data-target="3">
+                <span>Next Chapter</span> <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SLIDE 3: SECOND PHOTO — HER STRENGTH
+         ============================================== -->
+    <section class="slide slide-3" id="slide-3" data-slide="3">
+      <div class="slide-content memory-slide-wrap">
+        
+        <div class="memory-card-grid reverse-on-desktop">
+          <!-- Photo Column -->
+          <div class="photo-column">
+            <div class="polaroid-frame frame-tilt-right">
+              <div class="washi-tape tape-corner-right"></div>
+              <div class="photo-wrapper">
+                <img src="assets/images/photo2.jpg" alt="Childhood memories together" class="memory-photo" />
+              </div>
+              <div class="polaroid-caption">
+                <span class="caption-handwritten">Stronger Together ✨</span>
+                <span class="caption-date">Chapter 02</span>
+              </div>
+              <div class="cute-sticker">💪❤️</div>
+            </div>
+          </div>
+
+          <!-- Message Column -->
+          <div class="letter-column">
+            <div class="scrapbook-letter letter-warm">
+              <div class="letter-header">
+                <span class="stamp-pill stamp-warm">💪 Her Strength</span>
+                <span class="memory-number">02 / 05</span>
+              </div>
+
+              <div class="letter-body">
+                <p class="quote-text primary-quote">
+                  Ee pic lo ninnu chusthunte... 🥹❤️
+                </p>
+                <p class="quote-text">
+                  Nuvvu entha strong ga unnavo neeke telisthe baagundu.
+                </p>
+                <p class="quote-text">
+                  Ee strength nee lopale undhi ani eppudu marchipoku.
+                </p>
+                <p class="quote-text accent-note">
+                  Eppudu ilane undu ra pichipilla.
+                </p>
+                <p class="quote-text">
+                  Life lo enni situations vachina, enni struggles face cheyyalsi vachina, don't ever lose this strength.
+                </p>
+                <p class="quote-text highlight-strong">
+                  Ilaage strong ga nilabadali, always!
+                </p>
+                <p class="quote-text signature-line">
+                  Love you, my homegirl! ❤️🫂
+                </p>
+              </div>
+
+              <div class="letter-footer">
+                <span class="friendship-tag">Homegirl Power 🫂</span>
+              </div>
+            </div>
+
+            <!-- Slide Navigation Buttons -->
+            <div class="slide-nav-buttons">
+              <button class="nav-btn prev-btn" data-target="2">
+                <span class="arrow">←</span> <span>Previous</span>
+              </button>
+              <button class="nav-btn next-btn" data-target="4">
+                <span>Next Chapter</span> <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SLIDE 4: THIRD PHOTO — LUCKY CHARM MESSAGE
+         ============================================== -->
+    <section class="slide slide-4" id="slide-4" data-slide="4">
+      <div class="slide-content memory-slide-wrap">
+        
+        <div class="memory-card-grid">
+          <!-- Photo Column -->
+          <div class="photo-column">
+            <div class="polaroid-frame frame-tilt-left">
+              <div class="washi-tape tape-center-top"></div>
+              <div class="photo-wrapper">
+                <img src="assets/images/photo3.jpg" alt="Pretty in blue floral dress" class="memory-photo" />
+              </div>
+              <div class="polaroid-caption">
+                <span class="caption-handwritten">Real Lucky Charm 🧿</span>
+                <span class="caption-date">Chapter 03</span>
+              </div>
+              <div class="cute-sticker evil-eye-badge">🧿</div>
+            </div>
+          </div>
+
+          <!-- Message Column -->
+          <div class="letter-column">
+            <div class="scrapbook-letter letter-lavender">
+              <div class="letter-header">
+                <span class="stamp-pill stamp-lavender">🧿 Lucky Charm</span>
+                <span class="memory-number">03 / 05</span>
+              </div>
+
+              <div class="letter-body">
+                <p class="quote-text primary-quote">
+                  Oye pichepilla! ❤️
+                </p>
+                <p class="quote-text">
+                  Don't you ever think you're unlucky.
+                </p>
+                <p class="quote-text highlight-lucky">
+                  Nuvvu unlucky kaadhu ra, nuvvu oka lucky charm vi. 🧿
+                </p>
+                <p class="quote-text">
+                  Maybe you don't realise it, but nee presence eh chala mandiki happiness istundi.
+                </p>
+                <p class="quote-text signature-line">
+                  And I'm genuinely lucky to have you as my homegirl! 🫶🏻
+                </p>
+              </div>
+
+              <div class="letter-footer">
+                <span class="friendship-tag">Pure Good Energy 🧿✨</span>
+              </div>
+            </div>
+
+            <!-- Slide Navigation Buttons -->
+            <div class="slide-nav-buttons">
+              <button class="nav-btn prev-btn" data-target="3">
+                <span class="arrow">←</span> <span>Previous</span>
+              </button>
+              <button class="nav-btn next-btn" data-target="5">
+                <span>Next Chapter</span> <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SLIDE 5: FOURTH PHOTO — FRIENDSHIP PROMISE
+         ============================================== -->
+    <section class="slide slide-5" id="slide-5" data-slide="5">
+      <div class="slide-content memory-slide-wrap">
+        
+        <div class="memory-card-grid reverse-on-desktop">
+          <!-- Photo Column -->
+          <div class="photo-column">
+            <div class="polaroid-frame frame-tilt-right">
+              <div class="washi-tape tape-corner-right"></div>
+              <div class="photo-wrapper">
+                <img src="assets/images/photo4.jpg" alt="Her with flowers" class="memory-photo" />
+              </div>
+              <div class="polaroid-caption">
+                <span class="caption-handwritten">Forever Homegirl 🤝</span>
+                <span class="caption-date">Chapter 04</span>
+              </div>
+              <div class="cute-pin">📌</div>
+            </div>
+          </div>
+
+          <!-- Message Column -->
+          <div class="letter-column">
+            <div class="scrapbook-letter letter-promise">
+              <div class="letter-header">
+                <span class="stamp-pill stamp-promise">🤝 Friendship Promise</span>
+                <span class="memory-number">04 / 05</span>
+              </div>
+
+              <div class="letter-body">
+                <p class="quote-text primary-quote">
+                  Oye pichepilla! ❤️
+                </p>
+                <p class="quote-text">
+                  Life lo enni struggles vachina, don't ever give up ra.
+                </p>
+                <p class="quote-text">
+                  Nuvvu anukunnadanikanna chala strong. Bad days vasthayi, situations change avuthayi, but never let them make you feel less of yourself.
+                </p>
+                <p class="quote-text promise-divider">
+                  And one more thing...
+                </p>
+                <p class="quote-text highlight-promise">
+                  Enni fights vachina, enni misunderstandings vachina, mana friendship matram break avvakudadhu.
+                </p>
+                <p class="quote-text signature-line bold-signature">
+                  I'll always be your homeboy, no matter what! 🫂❤️
+                </p>
+              </div>
+
+              <div class="letter-footer">
+                <span class="friendship-tag">Homeboy & Homegirl for Life 🤞</span>
+              </div>
+            </div>
+
+            <!-- Slide Navigation Buttons -->
+            <div class="slide-nav-buttons">
+              <button class="nav-btn prev-btn" data-target="4">
+                <span class="arrow">←</span> <span>Previous</span>
+              </button>
+              <button class="nav-btn next-btn grand-next-btn" data-target="6">
+                <span>The Final Surprise</span> <span class="arrow">🎉</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SLIDE 6: FINAL BIRTHDAY SURPRISE — VIDEO
+         ============================================== -->
+    <section class="slide slide-6" id="slide-6" data-slide="6">
+      <div class="slide-content finale-slide-wrap">
+        
+        <!-- Phase 1: Warning Card (Before click) -->
+        <div class="warning-container" id="warning-container">
+          <div class="scrapbook-card warning-card">
+            <div class="caution-tape-strip">
+              <span>⚠️ CAUTION ⚠️ OFFICIAL WARNING ⚠️ ATTENTION ⚠️</span>
+            </div>
+
+            <div class="warning-icon-badge">⚠️</div>
+
+            <h2 class="warning-title">WARNING ⚠️</h2>
+
+            <div class="warning-message-box">
+              <p class="warning-text">
+                Friendship with this pichepilla comes with unlimited headaches and unlimited memories.
+              </p>
+            </div>
+
+            <div class="disclaimer-badge">
+              <span>Verified Best Friend Agreement 📜✨</span>
+            </div>
+
+            <button type="button" id="reveal-video-btn" class="btn btn-grand-surprise pulse-btn">
+              <span>Okay, one last surprise?</span>
+              <span class="btn-gift-icon">🎁</span>
+            </button>
+
+            <button class="nav-btn prev-btn mt-3" data-target="5">
+              <span class="arrow">←</span> <span>Previous Chapter</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Phase 2: Grand Birthday Letter Finale (Revealed on click) -->
+        <div class="video-finale-container hidden" id="video-finale-container">
+          
+          <div class="scrapbook-letter finale-letter-card" style="text-align: center !important;">
+            <div class="washi-tape tape-center-top"></div>
+            
+            <div class="letter-header" style="justify-content: space-between;">
+              <span class="stamp-pill stamp-gold">👑 Chapter 18 • Grand Finale</span>
+              <span class="memory-number">05 / 05</span>
+            </div>
+
+            <div class="finale-letter-header" style="text-align: center !important; margin: 0 auto 24px;">
+              <span class="celebration-badge">🎂 HAPPY 18TH BIRTHDAY! 🎂</span>
+              <h2 class="finale-title-text" style="text-align: center !important; margin: 0 auto;">Happy 18th Birthday major , my Ishuuuuuuuu</h2>
+            </div>
+
+            <div class="letter-body finale-body" style="text-align: center !important; align-items: center !important; justify-content: center !important; margin: 0 auto;">
+              <p class="quote-text finale-p" style="text-align: center !important; margin: 0 auto 20px; max-width: 680px;">
+                Just 2 months back naa life loki vachina nuvvu, intha thakkuva time lo naaku intha close avuthav ani assalu expect cheyyaledhu. I'm genuinely so happy that I met you. Nuvvu chala sweet and sensitive soul ra. Nee beautiful heart ni eppudu change chesukoku. Nuvvu entha special and strong oo eppudu marchipoku.
+              </p>
+
+              <p class="quote-text finale-p" style="text-align: center !important; margin: 0 auto 20px; max-width: 680px;">
+                Mana madhya enni misunderstandings vachina, enni chinna chinna fights ayina, avi mana bond ni eppudu break cheyyakudadhu. Silly things valla mana bond ni lose avvakudadhu. I hope mana bond ilane forever untundhi.
+              </p>
+
+              <p class="quote-text signature-line finale-blessing" style="text-align: center !important; margin: 15px auto 0;">
+                Eppudu happy ga undu, navvuthu undu💖💝
+              </p>
+            </div>
+
+            <!-- Dedicated Music Player Card on Slide 6 -->
+            <div class="song-player-card" id="song-player-card">
+              <div class="song-vinyl-container">
+                <div class="vinyl-record" id="card-vinyl-record">
+                  <div class="vinyl-grooves"></div>
+                  <div class="vinyl-center-label">🎵</div>
+                </div>
+              </div>
+
+              <div class="song-info-meta">
+                <span class="song-pill-label">Special Song For You ✨</span>
+                <h3 class="song-title-main">Adhento Gaani Vunnapaatuga</h3>
+                <p class="song-sub-info">JERSEY • Anirudh Ravichander</p>
+                <div class="music-equalizer" id="music-equalizer">
+                  <span class="eq-bar bar1"></span>
+                  <span class="eq-bar bar2"></span>
+                  <span class="eq-bar bar3"></span>
+                  <span class="eq-bar bar4"></span>
+                </div>
+              </div>
+
+              <div class="song-actions">
+                <button type="button" id="card-play-song-btn" class="btn btn-song-action">
+                  <span id="card-play-icon">▶</span>
+                  <span id="card-play-label">Play Song</span>
+                </button>
+                <a href="https://www.youtube.com/watch?v=F-lw8Gpp5cI" target="_blank" rel="noopener noreferrer" class="yt-direct-link" title="Open on YouTube">
+                  <span>YouTube ↗</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="letter-footer">
+              <span class="friendship-tag">Forever Your Homeboy 🤝🫂</span>
+            </div>
+          </div>
+
+          <div class="finale-actions">
+            <button class="nav-btn prev-btn" data-target="5">
+              <span class="arrow">←</span> <span>Previous Memory</span>
+            </button>
+            <button class="btn btn-secondary restart-btn" id="restart-journey-btn">
+              <span>Replay Memories from Start</span> <span>↺</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Native HTML5 Audio Element (Guaranteed 100% Offline & Local Playback) -->
+  <audio id="bg-audio" preload="auto" loop>
+    <source src="assets/audio/song.mp3" type="audio/mp3">
+    <source src="assets/audio/song.m4a" type="audio/mp4">
+  </audio>
+
+  <!-- Floating Interactive Music Player Widget -->
+  <aside id="floating-music-widget" class="floating-music-widget" aria-label="Music Player">
+    <div class="widget-header" id="widget-header">
+      <div class="widget-disc-wrapper" id="widget-disc-wrapper">
+        <span class="widget-disc-icon">💿</span>
+      </div>
+      <div class="widget-track-info">
+        <span class="widget-song-name">Adhento Gaani</span>
+        <span class="widget-movie-name">JERSEY • Anirudh 🎵</span>
+      </div>
+      <div class="widget-action-btns">
+        <button type="button" id="widget-play-btn" class="widget-circle-btn" aria-label="Play/Pause Song" title="Play / Pause">
+          <span id="widget-play-icon">▶</span>
+        </button>
+        <button type="button" id="widget-toggle-expand" class="widget-circle-btn widget-expand-btn" aria-label="Minimize / Expand Player" title="Toggle Player">
+          <span id="widget-expand-icon">▾</span>
+        </button>
+      </div>
+    </div>
+    
+    <div class="widget-expanded-body" id="widget-expanded-body">
+      <div class="widget-track-card">
+        <div class="widget-meta-row">
+          <div class="widget-equalizer" id="widget-equalizer">
+            <span class="bar b1"></span>
+            <span class="bar b2"></span>
+            <span class="bar b3"></span>
+            <span class="bar b4"></span>
+            <span class="bar b5"></span>
+          </div>
+          <div class="widget-time-display">
+            <span id="audio-current-time">0:00</span> / <span id="audio-duration">4:10</span>
+          </div>
+        </div>
+
+        <div class="progress-bar-container" id="audio-progress-container" title="Click to seek">
+          <div class="progress-bar-fill" id="audio-progress-fill"></div>
+        </div>
+
+        <div class="widget-direct-links">
+          <a href="https://www.youtube.com/watch?v=F-lw8Gpp5cI" target="_blank" rel="noopener noreferrer" class="yt-badge-link" title="Open Official Video on YouTube">
+            <span>Watch on YouTube ↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Sweet Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
